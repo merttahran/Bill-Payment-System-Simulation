@@ -90,8 +90,6 @@ int main(int argc, char **argv){
 	string out(argv[1]);
 	//if(out.find(".")>out.length())  
 	out= out.substr(0,out.find("."))+"_log.txt";
-/*	else
-		out= out.substr(0,out.find("."))+"_log"+out.substr(out.find("."));*/
 	
 	outputFile.open(out,ios::out);//open outputfile
 	int numCustomer;
@@ -142,9 +140,7 @@ int main(int argc, char **argv){
 	//create customer threads
 	for(int i=0;i<numCustomer;i++)
 		pthread_create(&customerThreads[i], &attr, customer,(void*)&values[i]);	
-	
-	/*for(int i=0;i<numCustomer;i++)
-		pthread_join(customerThreads[i], &status);*/
+
 	//wait ATM threads  until they are terminated
 	for(int i=0;i<10;i++){
 		pthread_join(ATMthreads[i], &status);
